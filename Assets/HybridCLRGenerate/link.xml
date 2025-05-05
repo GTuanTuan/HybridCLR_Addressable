@@ -45,6 +45,7 @@
     <type fullname="UnityEngine.CollisionFlags" preserve="all" />
   </assembly>
   <assembly fullname="mscorlib">
+    <type fullname="System.Action`1" preserve="all" />
     <type fullname="System.Array" preserve="all" />
     <type fullname="System.Byte" preserve="all" />
     <type fullname="System.Diagnostics.DebuggableAttribute" preserve="all" />

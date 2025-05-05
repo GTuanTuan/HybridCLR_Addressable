@@ -1,0 +1,10 @@
+HybridCLRData/
+Library/
+Logs/
+Temp/
+Assembly-CSharp.csproj
+HybridCLR_Addressable.sln
+UnityScripts.Editor.csproj
+UnityScripts.HotUpdate.csproj
+UnityScripts.Runtime.csproj
+.vsconfig
