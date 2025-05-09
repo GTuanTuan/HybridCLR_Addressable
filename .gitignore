@@ -8,3 +8,6 @@ UnityScripts.Editor.csproj
 UnityScripts.HotUpdate.csproj
 UnityScripts.Runtime.csproj
 .vsconfig
+Build/Exe/HybridCLR_Addressable_BackUpThisFolder_ButDontShipItWithYourGame/
+obj/
+.vs/

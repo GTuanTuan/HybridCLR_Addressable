@@ -13,4 +13,8 @@ public class GameManager : SingletonBehaviour<GameManager>
         DontDestroyOnLoad(MainCamera);
         DontDestroyOnLoad(UICamera);
     }
+    public bool HasNetwork()
+    {
+        return Application.internetReachability != NetworkReachability.NotReachable;
+    }
 }

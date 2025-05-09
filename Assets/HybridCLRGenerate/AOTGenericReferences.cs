@@ -27,17 +27,26 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Action<UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle>
 	// System.Action<float>
 	// System.Action<object>
+	// System.Collections.Generic.ArraySortHelper<object>
+	// System.Collections.Generic.Comparer<object>
 	// System.Collections.Generic.EqualityComparer<object>
 	// System.Collections.Generic.HashSet.Enumerator<object>
 	// System.Collections.Generic.HashSet<object>
 	// System.Collections.Generic.ICollection<object>
+	// System.Collections.Generic.IComparer<object>
 	// System.Collections.Generic.IEnumerable<object>
 	// System.Collections.Generic.IEnumerator<object>
 	// System.Collections.Generic.IEqualityComparer<object>
+	// System.Collections.Generic.IList<object>
 	// System.Collections.Generic.LinkedList.Enumerator<object>
 	// System.Collections.Generic.LinkedList<object>
 	// System.Collections.Generic.LinkedListNode<object>
+	// System.Collections.Generic.List.Enumerator<object>
+	// System.Collections.Generic.List<object>
+	// System.Collections.Generic.ObjectComparer<object>
 	// System.Collections.Generic.ObjectEqualityComparer<object>
+	// System.Collections.ObjectModel.ReadOnlyCollection<object>
+	// System.Comparison<object>
 	// System.Func<UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
 	// System.Func<object,UnityEngine.ResourceManagement.ResourceProviders.SceneInstance>
 	// System.Func<object,object>

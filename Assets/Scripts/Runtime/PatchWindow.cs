@@ -26,7 +26,14 @@ public class PatchWindow : MonoBehaviour
     public void StartCheckUpdate(System.Action callback)
     {
         this.onUpdateComplete = callback;
-        StartCoroutine(CheckForCatalogUpdates());
+        if (GameManager.Inst.HasNetwork())
+        {
+            StartCoroutine(CheckForCatalogUpdates());
+        }
+        else
+        {
+            StartCoroutine(ReadyStart("无网络，使用本地资源"));
+        }
     }
     IEnumerator CheckForCatalogUpdates()
     {
@@ -35,8 +42,7 @@ public class PatchWindow : MonoBehaviour
         yield return catalogHandle;
         if (catalogHandle.Status != AsyncOperationStatus.Succeeded)
         {
-            statusText.text = "清单更新检查失败";
-            actionButton.gameObject.SetActive(true);
+            StartCoroutine(ReadyStart("检测清单更新失败，使用本地资源"));
             yield break;
         }
         else
@@ -59,8 +65,7 @@ public class PatchWindow : MonoBehaviour
         yield return updateHandle;
         if (updateHandle.Status != AsyncOperationStatus.Succeeded)
         {
-            statusText.text = "清单更新失败";
-            actionButton.gameObject.SetActive(true);
+            StartCoroutine(ReadyStart("清单更新失败，使用本地资源"));
             Addressables.Release(updateHandle);
             yield break;
         }
@@ -77,8 +82,7 @@ public class PatchWindow : MonoBehaviour
         yield return sizeHandle;
         if (sizeHandle.Status != AsyncOperationStatus.Succeeded)
         {
-            statusText.text = "资源更新检查失败";
-            actionButton.gameObject.SetActive(true);
+            StartCoroutine(ReadyStart("资源更新检查失败，使用本地资源"));
             yield break;
         }
         else
@@ -105,15 +109,15 @@ public class PatchWindow : MonoBehaviour
         var downloadHandle = Addressables.DownloadDependenciesAsync("preload");
         while (!downloadHandle.IsDone)
         {
-            progressBar.value = downloadHandle.PercentComplete;
+            float smoothProgress = Mathf.Lerp(progressBar.value, downloadHandle.PercentComplete, Time.deltaTime * 5f);
+            progressBar.value = smoothProgress;
             var status = downloadHandle.GetDownloadStatus();
             downloadSizeText.text = $"{status.DownloadedBytes / 1024f / 1024f:F1}MB / {status.TotalBytes / 1024f / 1024f:F1}MB";
             yield return null;
         }
         if (downloadHandle.Status != AsyncOperationStatus.Succeeded)
         {
-            statusText.text = "更新失败";
-            actionButton.gameObject.SetActive(true);
+            StartCoroutine(ReadyStart("下载更新失败，使用本地资源"));
             yield break;
         }
         else
@@ -122,10 +126,10 @@ public class PatchWindow : MonoBehaviour
         }
         Addressables.Release(downloadHandle);
     }
-    IEnumerator ReadyStart()
+    IEnumerator ReadyStart(string text = "更新完成!")
     {
         yield return null;
-        statusText.text = "更新完成!";
+        statusText.text = text;
         progressBar.value = 1f;
         updateCompleted = true;
         buttonText.text = "进入游戏";

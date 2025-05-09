@@ -12,7 +12,7 @@ public class GameStart : MonoBehaviour
         Debug.Log("Game Start");
         Addressables.LoadSceneAsync("Assets/GameRes/Scene/Test.unity").Completed+=(handle)=> 
         {
-            Debug.Log("Load Scene Test");
+            Debug.Log("Load Scene\"Test\"");
         };
     }
 
